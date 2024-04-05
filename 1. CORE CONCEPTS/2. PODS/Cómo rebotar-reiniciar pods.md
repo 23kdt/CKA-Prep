@@ -1,0 +1,2 @@
+Podemos indicarlo mediante una restart policy, que indicará los pasos a seguir en caso de que el pod se reinicie. Hay matices, pueden aplicarse en función del tipo de parada: Always, OnFailure, Never; básicamente, estos parámetros se ejecutarán si se realiza cualquier tipo de parada (por defecto), parada en caso de error (por ejemplo, si es un reinicio programado o una parada del clúster manual no debe aplicarse) o en ningún caso, por lo que las politicas de reinicio quedarían desactivadas. 
+
