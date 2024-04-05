@@ -1,4 +1,20 @@
 
+# SERVICIOS
+
+Es la forma de conectarnos de forma externa a nuestros contenedores.
+Hay clientes que pueden necesitar acceder a los pods de un deployment, que cada uno tendrá su IP, pero, no podremos conectarnos directamente con ellos porque no hay IP fija, no hay nombre fijo y no hay un puerto fijo. 
+Si se cae un pod, el replicaSet creará otro pod con una nueva IP.
+
+El servicio será el intermediario, que añade una IP fija, un nombre fijo y un puerto fijo. El servicio hace una lista dinámica de todos los pods y se los ofrece al cliente. 
+
+Tipos de servicios:
+
+- ClusterIP: hace que los pods sean accesibles desde dentro del clúster. 
+- NodePort: accesible desde fuera del clúster, con puerto con el que se puede acceder de forma externa llamado nodeport. 
+- LoadBalancer: implementa características de ambos, pero que se suele integrar con loadbalancers de terceros, como AWS, GCP, Azure, etc. 
+
+El servicio detecta los distintos pods que se van creando mediante el uso de labels, selectors. 
+
 Objeto que provee Kubernetes para exponer aplicaciones, a través de este podemos describir el tipo de conexiones que se realizan a nuestra aplicación y también balancear la carga destinada a esta. 
 
 El conjunto de pods a los que apunta el servicio se determina por un **selector**, que no es más que un campo que se configura en el propio YAML del servicio y una label que se configura en el YAML del pod. De esta forma, todos los pods con una etiqueta igual a Selector, ejecutará el servicio. 
