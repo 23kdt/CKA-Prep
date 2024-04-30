@@ -14,5 +14,5 @@ Si hacemos un ``kubectl get svc`` y observamos el servicio creado, veremos como 
 
 Una representación podría ser la siguiente:
 
-![[DEVOPS/K8S/anexo/Pasted image 20230314154959.png]]
+![Imagen](/CKA-Prep/ANEXO%20IMAGENES/Pasted%20image%2020230314154959.png)
 

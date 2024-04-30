@@ -7,7 +7,7 @@ Son la forma de exponer realmente los dominios.
 
 Objeto que expone las rutas HTTP y HTTPS desde fuera del clúster a los servicios dentro del clúster. Es en este objeto donde se definen las reglas que van a enrutar el tráfico entrante. 
 
-![[DEVOPS/K8S/anexo/Pasted image 20230314161525.png]]
+![Imagen](/CKA-Prep/ANEXO%20IMAGENES/Pasted%20image%2020230314161525.png)
 
 El servicio es de tipo clusterIP. 
 Cuando la petición llega, el balanceador la introduce dentro del clúster, y será el ingress quien determinará las reglas de reenvío, que indicará a la petición lo que tiene que hacer y dónde ir.

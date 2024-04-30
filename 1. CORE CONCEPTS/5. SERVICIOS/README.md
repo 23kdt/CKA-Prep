@@ -24,7 +24,7 @@ El conjunto de pods a los que apunta el servicio se determina por un **selector*
 Expone el Servicio en una dirección IP interna del clúster. Este es el ServiceType por defecto. 
 Nos permite exponer nuestro deployment de manera INTERNA, de una forma balanceada. Sin el clusterIP hay conectividad entre pods, pero la carga no está balanceada. Desde la red no podemos llegar a esta aplicación. 
 
-![[DEVOPS/K8S/anexo/Pasted image 20230314153203.png]]
+![Imagen](/CKA-Prep/ANEXO%20IMAGENES/Pasted%20image%2020230314153203.png)
 
 Ejemplo de YAML del servicio:
 
@@ -53,7 +53,7 @@ Es el servicio por defecto, por lo que no hace falta poner la etiqueta type en s
 
 Expone un Service en cada IP del nodo en un puerto estático (el NodePort). Automáticamente, se crea un Service ClusterIP, al cual enruta el NodePort del Service. Podrás alcanzar el Service NodePort desde fuera del clúster, haciendo una petición a \<NodeIP\>:\<NodePort\>. El rango de puertos que utiliza este servicio es 30000-32768. 
 
-![[DEVOPS/K8S/anexo/Pasted image 20230314153712.png]]
+![Imagen](/CKA-Prep/ANEXO%20IMAGENES/Pasted%20image%2020230314153712.png)
 
 Cuando alguien envía una petición con la IP del clúster y con el puerto de los nodos externos, el balanceador sabrá que existe este servicio. Desde el balanceador al nodo se hace a través del puerto 32668, pero dentro del clúster el SVC (clúster IP) actuaría como un clústerIP. 
 El endpoint se crea cuando se crea un servicio con backend se creará un endpoint y cuáles son los pods que están asociados.
@@ -67,8 +67,8 @@ Aunque la petición llegue a otro nodo, todos los nodos conocen este servicio, p
 #### LoadBalancer
 
 Expone el service externamente usando el balanceador de carga del proveedor de la nube. 
-![[DEVOPS/K8S/anexo/Pasted image 20230314154959.png]]
 
+![Imagen](/CKA-Prep/ANEXO%20IMAGENES/Pasted%20image%2020230314154959.png)
 
 Este tipo de servicios están pensado para trabajar con la nube. En azure nos crearía una IP pública y se lo asignaría a nuestro balanceador. El backend del balanceador son instancias. El load balancer envía la petición a los nodos del clúster, y son los nodos del clúster quienes envían la petición al servicio (svc). Se accede por la IP pública del balanceador, que enviaría la petición a cualquiera de los nodos del clúster (el que considere conveniente por carga), y los nodos del clúster que son los que si que conocen los servicios se lo enviará a estos servicios, que por último se lo enviarían a los pods. 
 
@@ -90,14 +90,17 @@ Y añadir los siguientes parametros:
 
 Uno de los parámetros del kubectl run es expose, por lo que se puede hacer con un solo comando. 
 
-``kubectl run pod-clusterIP --image=nginx --expose --port=80 -n ddoradog --dry-run=client -oyaml
+```
+kubectl run pod-clusterIP --image=nginx --expose --port=80 -n ddoradog --dry-run=client -oyaml
+```
 
 Este comando nos mostrará un servicio, que será un clusterIP y un pod, cuyo tag es igual al selector del service, por lo que es un nodo enlazado con el servicio.
 
 De forma que si desde otro pod ejecutamos un curl sobre el servicio anterior, nos debería dar respuesta. 
 
-``kubectl run test-clusterip --image=ccurlimages/curl --rm -it --restart=Never -n ddoradog -- curl pod-clusterip.ddoradog:80
-
+```
+kubectl run test-clusterip --image=ccurlimages/curl --rm -it --restart=Never -n ddoradog -- curl pod-clusterip.ddoradog:80
+```
 
 ---
 
