@@ -28,7 +28,7 @@ Nos permite exponer nuestro deployment de manera INTERNA, de una forma balancead
 
 Ejemplo de YAML del servicio:
 
-```
+```yaml
 apiVersion: v1.0
 kind: Service
 metadata:
@@ -90,7 +90,7 @@ Y añadir los siguientes parametros:
 
 Uno de los parámetros del kubectl run es expose, por lo que se puede hacer con un solo comando. 
 
-```
+```shell
 kubectl run pod-clusterIP --image=nginx --expose --port=80 -n ddoradog --dry-run=client -oyaml
 ```
 
@@ -98,7 +98,7 @@ Este comando nos mostrará un servicio, que será un clusterIP y un pod, cuyo ta
 
 De forma que si desde otro pod ejecutamos un curl sobre el servicio anterior, nos debería dar respuesta. 
 
-```
+```shell
 kubectl run test-clusterip --image=ccurlimages/curl --rm -it --restart=Never -n ddoradog -- curl pod-clusterip.ddoradog:80
 ```
 

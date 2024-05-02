@@ -1,3 +1,5 @@
+# CREAR PODs
+
 ### Forma imperativa (no recomendada)
 
 La forma más simple de hacerlo es mediante, por ejemplo, ``kubectl run nginx1 --image=nginx`` . 
@@ -7,8 +9,7 @@ La forma más simple de hacerlo es mediante, por ejemplo, ``kubectl run nginx1 -
 
 Para crear un pod debemos hacerlo desde un fichero de configuración YAML. Por ejemplo, creamos un fichero yaml llamado nginx-pod.yaml en una carpeta /examples con el siguiente formato:
 
-```
-
+```yaml
 # Número de versión del api que se quiere utilizar
 
 apiVersion: v1
@@ -48,18 +49,20 @@ spec:
     # Aquí se define la política de restauración en caso de que el pod se detenga o deje de ejecutarse debido a un fallo interno.
 
     restartPolicy: Always
-
 ```
 
-Después, mediante el comando creamos dicho pod.:
+Después, mediante el comando creamos discho pod.:
 
-``kubectl create -f example/nginx-pod.yaml``
+```shell
+kubectl create -f example/nginx-pod.yaml
+```
 
  
 SI hacemos un describe veremos toda la información relativa al pod: 
 
-``kubectl describe pod (nombrepod) -n namespace
-
+```shell
+kubectl describe pod (nombrepod) -n namespace
+```
 
 ---
 
@@ -68,5 +71,7 @@ SI hacemos un describe veremos toda la información relativa al pod:
 Cuando tenemos que modificar un pod, lo podemos realizar mediante el comando ``kubectl apply``. Esto lo único que hará será comparar el estado deseado con el actual. Añadirá, borrará, modificará, etc. automáticamente en función del estado deseado, por lo que es la forma más óptima de modificar algún recurso. 
 Ejemplo: 
 
-``kubectl apply -f nginx.yaml``
+```shell
+kubectl apply -f nginx.yaml
+```
 

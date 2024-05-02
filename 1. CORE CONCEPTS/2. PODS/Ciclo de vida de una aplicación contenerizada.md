@@ -1,3 +1,5 @@
+# CICLO DE VIDA DE UNA APLICACIÓN 
+
 Nuestra aplicación debe convertirse en una imagen que se pueda desplegar en un contenedor. En docker es muy fácil, ya que se hace ``docker run`` y ya está. En k8s, tenemos dos formas de pasar esta imagen a nuestro clúster:
 
 - Modo imperativo: cuando tenemos un clúster, desplega esta aplicación en un container con x réplicas mediante ``kubectl run``
