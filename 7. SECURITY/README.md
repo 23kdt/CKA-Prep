@@ -1,16 +1,19 @@
+# Primitivas de seguridad
+
 La autenticación basada en password debe estar deshabilitada, únicamente tiene que estar habilitada mediante SSH. 
 
 El kube-apiserver es el centro de todo.
 Necesitamos tenemos que tener en mente dos preguntas: ¿Quién puede acceder? ¿Qué pueden hacer?
 
-Quién puede acceder está definido por los mecanismos de autenticación.
+#### ¿Quién puede acceder? 
+Está definido por los mecanismos de autenticación.
 - Archivos - Usuarios y contraseñas
 - Archivos - Usuario y tokens
 - Certificados
 - Proveedores externos de autenticación - LDAP
 - Service Accounts
 
-Qué pueden hacer
+#### ¿Qué pueden hacer?
 - Definidos por RBAC autotrización
 - ABAC autorización
 - Node autorización
